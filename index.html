@@ -818,7 +818,7 @@ function handleAns(team, idx) {
     setCar(team, T[team].pos);
     carAnim(team, 'zoom');
     updateProg(team);
-    // Win — open a 300 ms window so a simultaneous finish by the other team
+    // Win — open a 150 ms window so a simultaneous finish by the other team
     // is also captured and results in a draw instead of one team "winning"
     if (T[team].score >= selectedCount) {
       if (T[team].revTO) clearTimeout(T[team].revTO);
@@ -827,13 +827,13 @@ function handleAns(team, idx) {
         // Other team already triggered the window — both finished, it's a draw
         clearTimeout(finishTO);
         finishTO = null;
-        setTimeout(() => endGame(0), 300);
+        setTimeout(() => endGame(0), 150);
       } else {
         // First finisher — start window, give the other team a chance to join
         finishTO = setTimeout(() => {
           finishTO = null;
           endGame(team); // only this team made it in time
-        }, 300);
+        }, 150);
       }
       return;
     }
