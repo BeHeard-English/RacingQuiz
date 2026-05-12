@@ -818,7 +818,7 @@ function handleAns(team, idx) {
     setCar(team, T[team].pos);
     carAnim(team, 'zoom');
     updateProg(team);
-    // Win — open a 150 ms window so a simultaneous finish by the other team
+    // Win — open a 700 ms window so a simultaneous finish by the other team
     // is also captured and results in a draw instead of one team "winning"
     if (T[team].score >= selectedCount) {
       if (T[team].revTO) clearTimeout(T[team].revTO);
@@ -846,9 +846,9 @@ function handleAns(team, idx) {
     });
   }
 
-  // Load next question after short reveal
+  // Load next question immediately after brief flash
   if (T[team].revTO) clearTimeout(T[team].revTO);
-  T[team].revTO = setTimeout(()=>loadQ(team), 1400);
+  T[team].revTO = setTimeout(()=>loadQ(team), 150);
 }
 
 /* ═══════════════════════════════════════════
